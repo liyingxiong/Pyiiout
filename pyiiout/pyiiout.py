@@ -30,7 +30,7 @@ c1 = c + 1
 SWITCH_cd = np.power(-1.0, c1[np.newaxis, :] + c1[:, np.newaxis])
 
 A_c = np.ones((n_c,), dtype=np.float_)
-# Geomerty approximation
+# Geometry approximation
 I = np.arange(n_n_tot)
 x_grid = np.array(np.mgrid[0:L_x:complex(0, n_n_tot), ])
 x_Id = np.einsum('d...->...d', x_grid).reshape(-1, 1)
@@ -48,7 +48,7 @@ NN_ECidDjf = np.einsum('m, CD,mi,mj,Em->ECiDj',
 BB_Eij = BB_ECidDjf.reshape(-1, n_e_dof, n_e_dof)
 NN_Eij = NN_ECidDjf.reshape(-1, n_e_dof, n_e_dof)
 K_Eij = BB_Eij + NN_Eij
-# Multilayer expansion
+# Multi-layer expansion
 C = np.arange(n_c) * n_n_tot
 I_C = I[np.newaxis, :] + C[:, np.newaxis]
 I_ECi = np.vstack([[I_C[:, :-1], I_C[:, 1:]]]).T.reshape(-1, n_e_dof)
